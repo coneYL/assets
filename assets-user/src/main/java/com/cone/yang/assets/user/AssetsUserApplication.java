@@ -24,7 +24,7 @@ public class AssetsUserApplication implements CommandLineRunner {
 
     public void setUpUser(){
         User user = new User();
-        user.setName("张三");
+        user.setName("李四");
         user.setRegisterDate(LocalDateTime.now());
 
         userRepository.save(user);
@@ -32,6 +32,6 @@ public class AssetsUserApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       // setUpUser();
+       setUpUser();
     }
 }
