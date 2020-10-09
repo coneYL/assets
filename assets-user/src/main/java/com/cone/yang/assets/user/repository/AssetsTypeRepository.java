@@ -49,5 +49,12 @@ public interface AssetsTypeRepository extends Repository<AssetsType, UUID> {
      */
     Iterable<AssetsType> findByInUseIsTrue();
 
+    /**
+     * 根据编号获取资产类型
+     * @param code
+     * @return
+     */
+    AssetsType findByCode(String code);
+
 }
 

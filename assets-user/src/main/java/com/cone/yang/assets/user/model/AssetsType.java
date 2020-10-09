@@ -20,6 +20,7 @@ import java.io.Serializable;
 @Entity
 @Table(name ="assets_type")
 public class AssetsType extends AbstractModel {
+
     /**
      * 编码
      */
