@@ -1,6 +1,8 @@
 package com.cone.yang.assets.user;
 
+import com.cone.yang.assets.user.model.AssetsType;
 import com.cone.yang.assets.user.model.User;
+import com.cone.yang.assets.user.repository.AssetsTypeRepository;
 import com.cone.yang.assets.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,20 +20,38 @@ import java.time.LocalDateTime;
 public class AssetsUserApplication implements CommandLineRunner {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AssetsTypeRepository assetsTypeRepository;
     public static void main(String[] args) {
         SpringApplication.run(AssetsUserApplication.class, args);
     }
 
-    public void setUpUser(){
+    public void setUp(){
+        //buildUser();
+        buildAssetsType();
+    }
+
+    private void buildAssetsType() {
+        AssetsType assetsType = new AssetsType();
+        assetsType.setCode("20000");
+        assetsType.setName("房产");
+        assetsType.setInUse(false);
+        assetsTypeRepository.save(assetsType);
+        Iterable<AssetsType> inUse = assetsTypeRepository.findByInUseIsTrue();
+        inUse.forEach(model -> System.out.println(model.getCode()+"-"+model.getName()));
+    }
+
+    private void buildUser() {
         User user = new User();
-        user.setName("李四");
+        user.setName("王五");
         user.setRegisterDate(LocalDateTime.now());
 
         userRepository.save(user);
     }
 
+
     @Override
     public void run(String... args) throws Exception {
-       setUpUser();
+       setUp();
     }
 }
