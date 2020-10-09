@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Getter
 @Entity
 @Table(name = "assets_house")
-public class House extends AbstractModel{
+public class House extends AbstractModel {
 
     @ManyToOne
     private AssetsType assetsType;
@@ -45,6 +45,5 @@ public class House extends AbstractModel{
      * 面积大小
      */
     private double scale;
-
 
 }

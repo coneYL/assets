@@ -23,72 +23,18 @@ import java.time.LocalDateTime;
 @SpringBootApplication
 public class AssetsUserApplication implements CommandLineRunner {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private AssetsTypeRepository assetsTypeRepository;
-    @Autowired
-    private HouseRepository houseRepository;
-    @Autowired
-    private StockRepository stockRepository;
+    private SetupScript setupScript;
 
-    private static final String stockCode = "10000";
-    private static final String houseCode = "20000";
+
     public static void main(String[] args) {
         SpringApplication.run(AssetsUserApplication.class, args);
     }
 
-    public void setUp(){
-        //buildUser();
-        //buildAssetsType();
 
-        buildHouse();
-
-        buildStock();
-
-    }
-
-    private void buildStock() {
-        Stock stock = new Stock();
-        stock.setAssetsType(assetsTypeRepository.findByCode(stockCode));
-        stock.setCode("201116");
-        stock.setName("信号资产");
-        stock.setUnitPrice(199.89);
-        stock.setAmount(1600);
-        stockRepository.save(stock);
-    }
-
-    private void buildHouse() {
-        House house = new House();
-        house.setAssetsType(assetsTypeRepository.findByCode(houseCode));
-        house.setAreaName("大悦城");
-        house.setBuildingName("5号楼1单元");
-        house.setDoorName("2304");
-        house.setUnitPrice(1000.89);
-        house.setScale(95.87);
-        houseRepository.save(house);
-    }
-
-    private void buildAssetsType() {
-        AssetsType assetsType = new AssetsType();
-        assetsType.setCode("20000");
-        assetsType.setName("房产");
-        assetsType.setInUse(false);
-        assetsTypeRepository.save(assetsType);
-        Iterable<AssetsType> inUse = assetsTypeRepository.findByInUseIsTrue();
-        inUse.forEach(model -> System.out.println(model.getCode()+"-"+model.getName()));
-    }
-
-    private void buildUser() {
-        User user = new User();
-        user.setName("王五");
-        user.setRegisterDate(LocalDateTime.now());
-
-        userRepository.save(user);
-    }
 
 
     @Override
     public void run(String... args) throws Exception {
-       setUp();
+        setupScript.init();
     }
 }

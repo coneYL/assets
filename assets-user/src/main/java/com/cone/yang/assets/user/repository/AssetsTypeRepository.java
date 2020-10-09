@@ -14,6 +14,7 @@ package com.cone.yang.assets.user.repository;
 
 import com.cone.yang.assets.user.model.AssetsType;
 import com.cone.yang.assets.user.model.User;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 
 import java.util.Optional;
@@ -27,21 +28,8 @@ import java.util.UUID;
  * @since 2020-9-30 18:41:08
  */
 @org.springframework.stereotype.Repository
-public interface AssetsTypeRepository extends Repository<AssetsType, UUID> {
+public interface AssetsTypeRepository extends CrudRepository<AssetsType, UUID> {
 
-    /**
-     * 创建资产类型
-     * @param model
-     * @return
-     */
-    AssetsType save(AssetsType model);
-
-    /**
-     * 根据用户id资产类型
-     * @param id
-     * @return
-     */
-    Optional<AssetsType> findById(UUID id);
 
     /**
      * 查找使用中的资产类型

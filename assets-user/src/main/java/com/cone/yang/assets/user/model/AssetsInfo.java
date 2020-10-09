@@ -2,9 +2,10 @@ package com.cone.yang.assets.user.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * 资产信息
@@ -20,11 +21,28 @@ public class AssetsInfo extends AbstractModel{
     /**
      * 资产id
      */
-    private Long assetsId;
+    @Column(name = "asserts_id")
+    private Long assertsId;
 
     /**
      * 资产市值
      */
     private double assetValue;
+
+    /**
+     * 资产成本
+     */
+    private double assetCost;
+
+    /**
+     * 市场单价
+     */
+    private double currentPrice;
+
+    /**
+     * 计算时间
+     */
+    @Nullable
+    private LocalDateTime priceDate;
 
 }
