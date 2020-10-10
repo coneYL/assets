@@ -16,13 +16,13 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-@Table(name = "assets_info")
-public class AssetsInfo extends AbstractModel{
+@Table(name = "assets_stock_info")
+public class AssetsStockInfo extends AbstractModel{
     /**
      * 资产id
      */
-    @Column(name = "asserts_id")
-    private Long assertsId;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private Stock stock;
 
     /**
      * 资产市值
