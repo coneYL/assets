@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 /**
  * 股票资产信息
@@ -42,5 +43,10 @@ public class Stock extends AbstractModel{
      * 持有数量
      */
     private double amount;
+
+    /**
+     * 购买日期
+     */
+    private LocalDateTime purchaseDate;
 
 }

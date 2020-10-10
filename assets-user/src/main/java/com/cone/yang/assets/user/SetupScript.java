@@ -96,17 +96,20 @@ public class SetupScript {
         stock.setName("信号资产");
         stock.setUnitPrice(199.89);
         stock.setAmount(1600);
+        stock.setPurchaseDate(LocalDateTime.now());
         return stockRepository.save(stock);
     }
 
     private House buildHouse() {
         House house = new House();
+        house.setCode("1000102001");
         house.setAssetsType(assetsTypeRepository.findByCode(houseCode));
         house.setAreaName("大悦城");
         house.setBuildingName("5号楼1单元");
         house.setDoorName("2304");
         house.setUnitPrice(1000.89);
         house.setScale(95.87);
+        house.setPurchaseDate(LocalDateTime.now());
         return houseRepository.save(house);
     }
 

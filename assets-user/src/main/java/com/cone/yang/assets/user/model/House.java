@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 /**
  * 房屋
@@ -21,6 +22,11 @@ public class House extends AbstractModel {
 
     @ManyToOne
     private AssetsType assetsType;
+
+    /**
+     * 房屋编号
+     */
+    private String code;
 
     /**
      * 小区名称
@@ -45,5 +51,10 @@ public class House extends AbstractModel {
      * 面积大小
      */
     private double scale;
+
+    /**
+     * 购买日期
+     */
+    private LocalDateTime purchaseDate;
 
 }
