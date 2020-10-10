@@ -30,6 +30,11 @@ public class SetupScript {
     private AssetsStockInfoRepository assetsStockInfoRepository;
     @Autowired
     private AssetsHouseInfoRepository assetsHouseInfoRepository;
+    @Autowired
+    private UserAssetsStockInfoAssociationRepository userAssetsStockInfoAssociationRepository;
+    @Autowired
+    private UserAssetsHouseInfoAssciationRepository userAssetsHouseInfoAssciationRepository;
+
     private static final String stockCode = "10000";
     private static final String houseCode = "20000";
     public void init(){
@@ -37,11 +42,27 @@ public class SetupScript {
         User user = buildUser();
         Stock stock = buildStock();
         House house = buildHouse();
-        buildAssetsStockInfo(stock, 102D);
-        buildAssetsHouseInfo(house, 2000D);
+        AssetsStockInfo assetsStockInfo = buildAssetsStockInfo(stock, 102D);
+        AssetsHouseInfo assetsHouseInfo = buildAssetsHouseInfo(house, 2000D);
+        buildUserAssetsStock(user,assetsStockInfo);
+        buildUserAssetsHouse(user,assetsHouseInfo);
     }
 
-    private void buildAssetsHouseInfo(House house, double currentPrice) {
+    private UserAssetsHouseInfoAssciation buildUserAssetsHouse(User user, AssetsHouseInfo assetsHouseInfo) {
+        UserAssetsHouseInfoAssciation userAssetsHouseInfoAssciation = new UserAssetsHouseInfoAssciation();
+        userAssetsHouseInfoAssciation.setUser(user);
+        userAssetsHouseInfoAssciation.setAssetsHouseInfo(assetsHouseInfo);
+        return userAssetsHouseInfoAssciationRepository.save(userAssetsHouseInfoAssciation);
+    }
+
+    private UserAssetsStockInfoAssociation buildUserAssetsStock(User user, AssetsStockInfo assetsStockInfo) {
+        UserAssetsStockInfoAssociation userAssetsStockInfoAssociation = new UserAssetsStockInfoAssociation();
+        userAssetsStockInfoAssociation.setUser(user);
+        userAssetsStockInfoAssociation.setAssetsStockInfo(assetsStockInfo);
+        return userAssetsStockInfoAssociationRepository.save(userAssetsStockInfoAssociation);
+    }
+
+    private AssetsHouseInfo buildAssetsHouseInfo(House house, double currentPrice) {
         AssetsHouseInfo assetsHouseInfo = new AssetsHouseInfo();
         assetsHouseInfo.setHouse(house);
         BigDecimal currentPriceBD = new BigDecimal(currentPrice);
@@ -51,11 +72,11 @@ public class SetupScript {
         assetsHouseInfo.setAssetCost(costPriceBD.multiply(amountBD).setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue());
         assetsHouseInfo.setCurrentPrice(currentPrice);
         assetsHouseInfo.setPriceDate(LocalDateTime.now());
-        assetsHouseInfoRepository.save(assetsHouseInfo);
+        return assetsHouseInfoRepository.save(assetsHouseInfo);
 
     }
 
-    private void buildAssetsStockInfo(Stock stock, double currentPrice){
+    private AssetsStockInfo buildAssetsStockInfo(Stock stock, double currentPrice){
         AssetsStockInfo assetsInfo = new AssetsStockInfo();
         assetsInfo.setStock(stock);
         assetsInfo.setCurrentPrice(currentPrice);
@@ -65,7 +86,7 @@ public class SetupScript {
         assetsInfo.setAssetValue(currentPriceBD.multiply(amountBD).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
         assetsInfo.setAssetCost(costPriceBD.multiply(amountBD).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
         assetsInfo.setPriceDate(LocalDateTime.now());
-        assetsStockInfoRepository.save(assetsInfo);
+       return assetsStockInfoRepository.save(assetsInfo);
     }
 
     private Stock buildStock() {
@@ -109,8 +130,7 @@ public class SetupScript {
         User user = new User();
         user.setName("王五");
         user.setRegisterDate(LocalDateTime.now());
-        userRepository.save(user);
-        return user;
+        return userRepository.save(user);
     }
 
 }
