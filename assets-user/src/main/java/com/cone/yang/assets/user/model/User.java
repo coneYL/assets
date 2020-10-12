@@ -2,17 +2,11 @@ package com.cone.yang.assets.user.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.domain.Persistable;
 import org.springframework.lang.Nullable;
-import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -24,7 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "assets_user")
-public class User extends AbstractModel {
+public class User extends AbstractBaseModel {
 
     /**
      * 用户名称

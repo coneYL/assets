@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @since 2020/10/9 15:28
  */
 @MappedSuperclass
-public class AbstractModel implements Persistable<Long>, Serializable {
+public class AbstractBaseModel implements Persistable<Long>, Serializable {
     /**
      * 用户id
      */

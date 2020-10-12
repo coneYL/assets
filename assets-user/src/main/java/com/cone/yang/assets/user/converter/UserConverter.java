@@ -18,8 +18,9 @@ import java.util.stream.Collectors;
  * @since 2020/10/12 9:18
  */
 @Component
-public class UserConverter implements Serializable {
+public class UserConverter extends AbstractBaseConverter<User,UserDTO> {
 
+    @Override
     public User toModel(UserDTO userDTO){
         User user = new User();
         user.setName(userDTO.getName());
@@ -27,6 +28,7 @@ public class UserConverter implements Serializable {
         return user;
     }
 
+    @Override
     public UserDTO toDTO(User user){
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -34,7 +36,4 @@ public class UserConverter implements Serializable {
         return userDTO;
     }
 
-    public List<UserDTO> toDTOList(List<User> userList){
-        return CollectionUtils.isEmpty(userList) ? Collections.emptyList() : (List)userList.stream().map(this::toDTO).collect(Collectors.toList());
-    }
 }

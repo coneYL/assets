@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "assets_house")
-public class House extends AbstractModel {
+public class House extends AbstractBaseModel {
 
     @ManyToOne
     private AssetsType assetsType;

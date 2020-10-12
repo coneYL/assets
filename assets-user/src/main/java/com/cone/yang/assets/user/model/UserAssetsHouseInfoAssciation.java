@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Getter
 @Entity
 @Table(name = "user_assets_house_info_association")
-public class UserAssetsHouseInfoAssciation extends AbstractModel{
+public class UserAssetsHouseInfoAssciation extends AbstractBaseModel {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private User user;
 

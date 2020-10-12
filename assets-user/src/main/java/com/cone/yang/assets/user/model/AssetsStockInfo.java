@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "assets_stock_info")
-public class AssetsStockInfo extends AbstractModel{
+public class AssetsStockInfo extends AbstractBaseModel {
     /**
      * 资产id
      */
