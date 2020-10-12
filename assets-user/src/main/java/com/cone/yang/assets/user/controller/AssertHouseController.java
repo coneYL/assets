@@ -25,24 +25,5 @@ import java.util.List;
 @Api(tags = {"房产管理接口" })
 public class AssertHouseController {
 
-    @Autowired
-    private UserConverter userConverter;
-    @Autowired
-    private UserService userService;
 
-
-    @ApiOperation(value = "新建用户")
-    @PostMapping
-    public ResultDTO<UserDTO> create(@RequestBody @Valid final UserDTO userDTO) {
-        User user = userConverter.toModel(userDTO);
-        user = userService.save(user);
-        return ResultDTO.success(userConverter.toDTO(user));
-    }
-
-    @GetMapping
-    @ApiOperation(value = "所有用户")
-    public ResultDTO<List<UserDTO>> findAll() {
-        List<User> userList = userService.findAll();
-        return ResultDTO.success(userConverter.toDTOList(userList));
-    }
 }
