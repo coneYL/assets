@@ -24,7 +24,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .pathMapping("/")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.assert.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.cone.yang.assets.user.controller"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(new ApiInfoBuilder()
                         .title("个人资产项目")

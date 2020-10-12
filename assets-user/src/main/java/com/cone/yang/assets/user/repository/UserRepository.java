@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
 
 import java.util.Collection;
@@ -33,28 +34,7 @@ import java.util.UUID;
  * @since 2020-9-30 18:41:08
  */
 @org.springframework.stereotype.Repository
-public interface UserRepository extends Repository<User, UUID> {
-
-    /**
-     * 创建用户
-     * @param model
-     * @return
-     */
-    User save(User model);
-
-    /**
-     * 根据用户id查找用户
-     * @param id
-     * @return
-     */
-    Optional<User> findById(UUID id);
-
-
-    /**
-     * 根据用户id删除用户
-     * @param id
-     */
-    void deleteById(UUID id);
+public interface UserRepository extends CrudRepository<User, UUID> {
 
 
 }
