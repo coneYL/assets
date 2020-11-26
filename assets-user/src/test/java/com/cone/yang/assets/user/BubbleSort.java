@@ -3,6 +3,7 @@ package com.cone.yang.assets.user;
 import lombok.extern.slf4j.Slf4j;
 
 import java.beans.beancontext.BeanContext;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class BubbleSort {
    /*     List<Integer> numList = Lists.newArrayList(12, 4, 15, 6);
         sort(numList);*/
 
-        int[] numArry = {1, 2, 3, 4, 5};
+        int[] numArry = {6,8,10,3,5, 2, 6,7, 4,6, 9};
         sort(numArry);
         sort4Speed(numArry);
     }
@@ -57,6 +58,7 @@ public class BubbleSort {
         }
         log.info("sort number is [{}]", numArra.length);
         log.info("sorted list run times is [{}]", times);
+        log.info("sorted list is [{}]", Arrays.toString(numArra));
         return numArra;
     }
 
@@ -77,6 +79,7 @@ public class BubbleSort {
         }
         log.info("sort number is [{}]", numArra.length);
         log.info("sorted list run times is [{}]", times);
+        log.info("sorted list is [{}]", Arrays.toString(numArra));
         return numArra;
     }
 
