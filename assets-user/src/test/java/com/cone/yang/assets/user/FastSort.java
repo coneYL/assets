@@ -32,11 +32,13 @@ public class FastSort {
         int endIndex = right;
 
         while (left != right){
-            while (numArry[right] > compareNum && left < right)
+            // 从右侧开始找，找小于compareNum的下标
+            while (numArry[right] >= compareNum && left < right)
             {
                 right--;
             }
 
+            // 从左侧开始找，找大于compareNum的下标
             while (numArry[left] <= compareNum && left< right){
                 left++;
             }
